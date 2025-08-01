@@ -23,6 +23,7 @@ const orderSchema = Schema(
         price: { type: Number, required: true },
       },
     ],
+    totalPrice: { type: Number, required: true },
     status: {
       type: String,
       enum: ["pending", "paid", "shipped", "delivered", "cancelled"],
