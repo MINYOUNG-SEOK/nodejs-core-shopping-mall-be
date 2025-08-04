@@ -8,6 +8,8 @@ const productSchema = Schema(
     category: { type: Array, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
+    originalPrice: { type: Number, required: true, default: 0 },
+    isOnSale: { type: Boolean, default: false },
     stock: { type: Schema.Types.Mixed, required: true },
     status: {
       type: String,

@@ -11,6 +11,8 @@ productController.createProduct = async (req, res) => {
       category,
       description,
       price,
+      originalPrice,
+      isOnSale,
       stock,
       status,
     } = req.body;
@@ -32,6 +34,8 @@ productController.createProduct = async (req, res) => {
       category,
       description,
       price,
+      originalPrice: originalPrice || price,
+      isOnSale: isOnSale || false,
       stock,
       status,
     });
