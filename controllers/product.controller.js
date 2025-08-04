@@ -49,7 +49,20 @@ productController.createProduct = async (req, res) => {
 
 productController.getProducts = async (req, res) => {
   try {
-    const products = await Product.find({});
+    const { category, name } = req.query;
+    let query = {};
+
+    // 카테고리 필터링
+    if (category && category !== "All") {
+      query.category = { $in: [category.toLowerCase()] };
+    }
+
+    // 이름 검색 필터링
+    if (name) {
+      query.name = { $regex: name, $options: "i" };
+    }
+
+    const products = await Product.find(query).sort({ createdAt: -1 });
     res.status(200).json({ status: "성공", data: products });
   } catch (error) {
     res.status(400).json({ status: "실패", error: error.message });
